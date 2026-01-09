@@ -45,6 +45,23 @@ function convert_trace {
     mkdir -p ./python_csv_outputs
     mv *.csv ./python_csv_outputs/
     rm ./*.csv
+
+
+    echo "Starting read-only C trace read for trace: $trace_path"
+    START_TIME=$SECONDS
+    /usr/bin/time -p ./otf2csv $trace_path --read-only
+    ELAPSED_TIME=$(($SECONDS - $START_TIME))
+    echo "C trace read-only completed in $ELAPSED_TIME seconds."
+
+    echo "Starting C trace to CSV conversion for trace: $trace_path"
+    START_TIME=$SECONDS
+    /usr/bin/time -p ./otf2csv $trace_path
+    ELAPSED_TIME=$(($SECONDS - $START_TIME))
+    echo "C trace to CSV conversion completed in $ELAPSED_TIME seconds."
+    echo "Cleaning up intermediate CSV files..."
+    mkdir -p ./c_csv_outputs
+    mv *.csv ./c_csv_outputs/
+    rm ./*.csv
 }
 
 convert_trace "./frontier-1-node-single-HPL-run/traces.otf2"
