@@ -61,3 +61,4 @@ The outputs will be in SLURM logs: `slurm-%j.out` and `slurm-%j.err`.
 #### Convert and Load into Workflow
 
 Open and run the `fastotf2-convert-and-load-bench.ipynb` notebook!
+This will run the `otf2csv` and `fastotf2` converters, and then load their data into a structured API that allows users to process the data in their traces and convert them into [Hatchet](https://hatchet.readthedocs.io/en/latest/) and [Thicket](https://thicket.readthedocs.io/en/latest/) profiles.
